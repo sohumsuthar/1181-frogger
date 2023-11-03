@@ -16,3 +16,5 @@ drawScene(scn,[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
 while true
     k = getKeyboardInput(scn)
 end
+
+

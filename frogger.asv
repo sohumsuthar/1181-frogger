@@ -4,7 +4,11 @@ close all
 
 
 scn = simpleGameEngine('frogger.png', 16, 16, 5, [0,0,0]);
-drawScene(scn,[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+drawScene(scn,)
+frogPos = [1, 2];
+frogX = frogPos(1);
+frogY = frogPos(2);
+sceneMatrix = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
@@ -12,7 +16,15 @@ drawScene(scn,[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+sceneMatrix(frogX, fro)
 while true
-    k = getKeyboardInput(scn)
+    k = getKeyboardInput(scn);
+    if k = 'uparrow'
 end
+
+
+
+
+

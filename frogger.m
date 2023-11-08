@@ -5,10 +5,10 @@ close all
 bgColor = [0, 0, 0];
 scn = simpleGameEngine('frogger.png', 16, 16, 5, bgColor);
 frogPos = [11, 6];
-alligatorSymbols = [15, 16, 17]; % Define the symbols for the alligators
-alligators = [2, 1; 3, 1; 4, 1; 5, 1]; % Initial positions for multiple alligators
-alligatorMoveCounter = 0; % Initialize the alligator move counter
-alligatorMoveFrequency = 1; % Set the frequency for alligators' movement
+alligatorSymbols = [15, 16, 17];
+alligators = [2, 1; 3, 1; 4, 1; 5, 1];
+alligatorMoveCounter = 0; 
+alligatorMoveFrequency = 1;
 
 bottomL = [18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18; ...
     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, ; ...

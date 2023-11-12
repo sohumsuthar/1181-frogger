@@ -117,7 +117,7 @@ while true
         topL(frogPos(1), frogPos(2)) = 2;
         k = '';
     elseif strcmp(k, 'downarrow') && (frogPos(1) ~= 11)
-        % Move the frog down
+        % Move the frog downe
         topL(frogPos(1), frogPos(2)) = 1;
         frogPos(1) = frogPos(1) + 1;
         topL(frogPos(1), frogPos(2)) = 2;

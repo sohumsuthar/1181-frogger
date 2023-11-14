@@ -115,26 +115,27 @@ while true
         topL(frogPos(1), frogPos(2)) = 1;
         frogPos(1) = frogPos(1) - 1;
         topL(frogPos(1), frogPos(2)) = 2;
-        k = '';
+
     elseif strcmp(k, 'downarrow') && (frogPos(1) ~= 11)
         % Move the frog downe
         topL(frogPos(1), frogPos(2)) = 1;
         frogPos(1) = frogPos(1) + 1;
         topL(frogPos(1), frogPos(2)) = 2;
-        k = '';
+
     elseif strcmp(k, 'rightarrow') && (frogPos(2) ~= 11)
         % Move the frog right
         topL(frogPos(1), frogPos(2)) = 1;
         frogPos(2) = frogPos(2) + 1;
         topL(frogPos(1), frogPos(2)) = 2;
-        k = '';
     elseif strcmp(k, 'leftarrow') && (frogPos(2) ~= 1)
         % Move the frog left
         topL(frogPos(1), frogPos(2)) = 1;
         frogPos(2) = frogPos(2) - 1;
         topL(frogPos(1), frogPos(2)) = 2;
-        k = '';
     end
+        k = getKeyboardInput(scn);
 
-    pause(0.05); % Pause to control the game speed
+    pause(0.5); % Pause to control the game speed
 end
+
+

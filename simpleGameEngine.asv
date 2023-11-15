@@ -218,7 +218,9 @@ classdef simpleGameEngine < handle
             figure(obj.my_figure);
             % key = waitforbuttonpress;
             % set(obj.my_figure,'WindowKeyPressFcn',@RetrieveKeyboardData);
-            key = get(obj.my_figure, 'CurrentKey');
+            % set(obj.my_figure, 'CurrentKey', 'h')
+            % key = get(obj.my_figure, 'CurrentKey');
+            key = get(obj.my_figure, 'WindowKeyPressFcn',@press)
 
             % set(obj.my_figure, 'CurrentKey', 0);
             % keydown = 0;
@@ -228,24 +230,10 @@ classdef simpleGameEngine < handle
             % else
             %     key = '';
             % end
-            finish=false;
-            set(gcf,'CurrentCharacter','@'); % set to a dummy character
-            while ~finish
-                % do things in loop...
-
-                % check for keys
-                key=get(gcf,'CurrentCharacter');
-                if key~='@' % has it changed from the dummy character?
-                    set(gcf,'CurrentCharacter','@'); % reset the character
-                    % now process the key as required
-                    
-                    finish=true; 
-                end
-                end
-            end
+            
         end
 
-
+        
 
 
         function [row,col,button] = getMouseInput(obj)
@@ -296,3 +284,17 @@ classdef simpleGameEngine < handle
         end
     end
 end
+
+
+    function press(varargin)
+            switch varargin{2}.Key
+                case 'uparrow'
+                    fprintf('ok1')
+                case 'downarrow'
+fprintf('ok1')
+                case 'leftarrow'
+fprintf('ok1')
+                case 'rightarrow'
+fprintf('ok1')
+            end
+    end

@@ -219,7 +219,7 @@ classdef simpleGameEngine < handle
             % key = waitforbuttonpress;
             % set(obj.my_figure,'WindowKeyPressFcn',@RetrieveKeyboardData);
             % set(obj.my_figure, 'CurrentKey', 'h')
-            key = get(obj.my_figure, 'CurrentKey');
+            % key = get(obj.my_figure, 'CurrentKey');
             key = get(obj.my_figure, 'WindowKeyPressFcn',@press)
 
             % set(obj.my_figure, 'CurrentKey', 0);
@@ -298,4 +298,3 @@ fprintf('ok1')
 fprintf('ok1')
             end
     end
-    

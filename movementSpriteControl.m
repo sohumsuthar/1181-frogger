@@ -19,13 +19,13 @@ for i = movementRows
 
             frogPos(2) = frogPos(2) - shiftAmount;
             if frogPos(2) == 0
-                resetFrogPos();
+                resetFrogPos(true);
             else
                 blankL(i, :) = circshift(blankL(i, :), [0, -shiftAmount]);
                 refreshScene();
             end
         elseif frogPos(1) == i && (ismember(topL(i, frogPos(2)), enemies) ||  bottomL(i, frogPos(2)) == 21)
-            resetFrogPos();
+            resetFrogPos(true);
         end
         topL(i, :) = circshift(topL(i, :), [0, -shiftAmount]);
     else
@@ -34,13 +34,13 @@ for i = movementRows
 
             frogPos(2) = frogPos(2) + shiftAmount;
             if frogPos(2) == 12
-                resetFrogPos();
+                resetFrogPos(true);
             else
                 blankL(i, :) = circshift(blankL(i, :), [0, shiftAmount]);
                 refreshScene();
             end
         elseif frogPos(1) == i && (ismember(topL(i, frogPos(2)), enemies) ||  bottomL(i, frogPos(2)) == 21)
-            resetFrogPos();
+            resetFrogPos(true);
 
         end
         topL(i, :) = circshift(topL(i, :), [0, shiftAmount]);

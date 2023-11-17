@@ -16,7 +16,7 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
     oldPos = frogPos(2);
     frogPos = [11, 6];
     topL(1, oldPos) = 14; % Place a marker on the log
-    resetFrogPos();
+    resetFrogPos(false);
     refreshScene();
 elseif points == 5
     xlabel(sprintf('GAME OVER!!! points: %d', points)); % Display points in the plot

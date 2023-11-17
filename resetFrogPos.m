@@ -1,4 +1,4 @@
-function resetFrogPos()
+function resetFrogPos(loss)
 global points;
 global frogPos;
 global topL;
@@ -14,7 +14,9 @@ global defaultBlank;
 
 frogPos = [11, 6]; % Reset frog position
 blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
-lives = lives - 1;
+if loss
+    lives = lives - 1;
+end
 blankL = defaultBlank;
 refreshScene();
 end

@@ -3,14 +3,28 @@ clear                   % Clear workspace variables
 close all               % Close all open figures
 
 % Set up initial variables and game environment
-bgColor = [0, 0, 0];    % Background color for the game
+
 global scn;
-scn = simpleGameEngine('frogger.png', 16, 16, 5, bgColor); % Create game engine
 global topL;
 global frogPos;
 global bottomL;
 global blankL;
+global points;
+global f;
+
+bgColor = [0, 0, 0];    % Background color for the game
+scn = simpleGameEngine('frogger.png', 16, 16, 5, bgColor); % Create game engine
+
+f = figure('KeyPressFcn', @(handle, event) keyPressCallback(event));
+set(f, 'Position', [10, 10, 10, 10]); % Adjust the position as needed
+
+
 frogPos = [11, 6];      % Initial position of the frog
+points = 0;             % Initialize points
+lives = 5;
+
+enemies = [15, 16, 17, 5, 6];
+
 alligatorSymbols = [15, 16, 17; 11, 15, 16; 11, 11, 15; 17, 11, 11; 16, 17, 11]; % Symbols for alligators
 alligators = [2, 4; 3, 6; 4, 3; 5, 7]; % Initial positions of alligators
 logs = [2, 4; 3, 6; 4, 3; 5, 7]; % Initial positions of logs
@@ -18,10 +32,9 @@ logMoveCounter = 0;     % Counter for log movement
 logMoveFrequency = 1;   % Frequency of log movement
 alligatorMoveCounter = 0;   % Counter for alligator movement
 alligatorMoveFrequency = 1; % Frequency of alligator movement
-points = 0;             % Initialize points
 
-% abc = ['a':'z'; 1:26];
-% index = find(abc(1, :) == input('enter a string with a char: ', 's'))
+movementRows = [2:5, 7:9];
+shiftAmount = 1;
 
 bottomL = [18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18; ... % Botton layer init
     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, ; ...
@@ -40,9 +53,9 @@ topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ... % Top layer init
     1, 1, 11, 11, 11, 1, 1, 1, 11, 11, 11; ...
     1, 1, 22, 23, 24, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
-    1, 6, 1, 1, 1, 1, 5, 1, 1, 1, 1; ...
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1; ...
-    7, 1, 1, 6, 1, 5, 1, 1, 1, 1, 1; ...
+    1, 6, 1, 1, 1, 1, 7, 7, 1, 1, 1; ...
+    1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1; ...
+    7, 1, 1, 6, 1, 1, 1, 1, 7, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 blankL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
@@ -56,15 +69,24 @@ blankL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+defaultBlank = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
+    1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1];
 
 drawScene(scn, bottomL, topL, blankL);
+xlabel(sprintf('points: %d', points)); % Display points in the plot
+title('Frogger') % Set the game title
 blankL(frogPos(1), frogPos(2)) = 2;
-global f;
-f = figure('KeyPressFcn', @(handle, event) keyPressCallback(event));
-set(f, 'Position', [10, 10, 10, 10]); % Adjust the position as needed
 
-enemies = [15, 16, 17, 11, 5, 6];
-lives = 5;
+
 % Game loop - runs the game continuously
 while true
     % alligatorMoveCounter = alligatorMoveCounter + 1; % Increment the alligator movement counter
@@ -89,39 +111,57 @@ while true
     %
     %     end
     % end
-    shiftAmount = 1;
+
 
     % Specify the rows to be shifted
-    rowsToShift = [2:5, 7:9];
+
 
     % Rightward shift for the specified rows
-    for i = rowsToShift
+    for i = movementRows
         if mod(i, 2) == 1
             topL(i, :) = circshift(topL(i, :), [0, -shiftAmount]);
-            if frogPos(1) == i && ~ismember(topL(i, frogPos(2)), enemies)
-                blankL(i, :) = circshift(blankL(i, :), [0, -shiftAmount]);
+            if frogPos(1) == i && (~ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) ~= 1)
+
                 frogPos(2) = frogPos(2) - shiftAmount;
                 if frogPos(2) == 0
                     frogPos = [11, 6]; % Reset frog position
                     blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
                     lives = lives - 1;
+                    blankL = defaultBlank;
+                else
+                    blankL(i, :) = circshift(blankL(i, :), [0, -shiftAmount]);
                 end
+            elseif frogPos(1) == i && (ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) == 1)
+                                    frogPos = [11, 6]; % Reset frog position
+                    blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
+                    lives = lives - 1;
+                    blankL = defaultBlank;
             end
         else
             topL(i, :) = circshift(topL(i, :), [0, shiftAmount]);
-            if frogPos(1) == i && ~ismember(topL(i, frogPos(2)), enemies)
-                blankL(i, :) = circshift(blankL(i, :), [0, shiftAmount]);
-                    frogPos(2) = frogPos(2) + shiftAmount;
+            if frogPos(1) == i && (ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) == 1)
+
+                frogPos(2) = frogPos(2) + shiftAmount;
                 if frogPos(2) == 12
                     frogPos = [11, 6]; % Reset frog position
                     blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
                     lives = lives - 1;
+                    blankL = defaultBlank;
+                    elseif
+                    blankL(i, :) = circshift(blankL(i, :), [0, shiftAmount]);
                 end
+            elseif frogPos(1) == i && (ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) == 1)
+                                    frogPos = [11, 6]; % Reset frog position
+                    blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
+                    lives = lives - 1;
+                    blankL = defaultBlank;
             end
         end
 
     end
     drawScene(scn, bottomL, topL, blankL);
+    xlabel(sprintf('points: %d', points)); % Display points in the plot
+    title('Frogger') % Set the game title
     figure(f);
     % % Check if the frog collides with an alligator
     % for i = 1:size(alligators, 1)
@@ -136,9 +176,10 @@ while true
 
     % Draw the game scene
     drawScene(scn, bottomL, topL, blankL);
-    figure(f);
     xlabel(sprintf('points: %d', points)); % Display points in the plot
     title('Frogger') % Set the game title
+    figure(f);
+
 
     % Update frog position and points based on movement and reaching the top
     if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 || frogPos(2) == 10) && frogPos(1) == 1)
@@ -148,6 +189,7 @@ while true
         points = points + 1; % Increment points
         frogPos = [11, 6]; % Reset frog position
         blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
+        drawScene(scn, blankL);
     elseif points == 5
         xlabel(sprintf('GAME OVER!!! points: %d', points)); % Display points in the plot
         drawScene(scn, blankL);
@@ -155,44 +197,9 @@ while true
     end
 
 
-
     pause(0.5); % Pause to control the game speed
 end
 
 
-function keyPressCallback(event)
-global frogPos;
-global topL;
-global scn;
-global bottomL;
-global blankL
-global f;
-k = event.Key;
-if strcmp(k, 'uparrow') && (frogPos(1) ~= 1)
-    % Move the frog up
-    blankL(frogPos(1), frogPos(2)) = 1;
-    frogPos(1) = frogPos(1) - 1;
-    blankL(frogPos(1), frogPos(2)) = 2;
-
-elseif strcmp(k, 'downarrow') && (frogPos(1) ~= 11)
-    % Move the frog downe
-    blankL(frogPos(1), frogPos(2)) = 1;
-    frogPos(1) = frogPos(1) + 1;
-    blankL(frogPos(1), frogPos(2)) = 2;
-
-elseif strcmp(k, 'rightarrow') && (frogPos(2) ~= 11)
-    % Move the frog right
-    blankL(frogPos(1), frogPos(2)) = 1;
-    frogPos(2) = frogPos(2) + 1;
-    blankL(frogPos(1), frogPos(2)) = 2;
-elseif strcmp(k, 'leftarrow') && (frogPos(2) ~= 1)
-    % Move the frog left
-    blankL(frogPos(1), frogPos(2)) = 1;
-    frogPos(2) = frogPos(2) - 1;
-    blankL(frogPos(1), frogPos(2)) = 2;
-end
-drawScene(scn, bottomL, topL, blankL);
-figure(f);
-end
 
 

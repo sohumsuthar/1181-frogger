@@ -186,54 +186,28 @@ classdef simpleGameEngine < handle
         end
 
 
-        % Old function:
-
-        % function key = getKeyboardInput(obj)
-        %     % getKeyboardInput
-        %     % Input: an SGE scene, which gains focus
-        %     % Output: next key pressed while scene has focus
-        %     % Note: the operation of the program pauses while it waits for input
-        %     % Example:
-        %     %     	k = getKeyboardInput(my_scene);
-        %
-        %
-        %     % Bring this scene to focus
-        %     figure(obj.my_figure);
-        %
-        %     % Pause the program until the user hits a key on the keyboard,
-        %     % then return the key pressed. The loop is required so that
-        %     % we don't exit on a mouse click instead.
-        %     keydown = 0;
-        %     while ~keydown
-        %         keydown = waitforbuttonpress;
-        %     end
-        %     key = get(obj.my_figure,'CurrentKey');
-        % end
-
-
-
 
         function key = getKeyboardInput(obj)
+            % getKeyboardInput
+            % Input: an SGE scene, which gains focus
+            % Output: next key pressed while scene has focus
+            % Note: the operation of the program pauses while it waits for input
+            % Example:
+            %     	k = getKeyboardInput(my_scene);
 
+
+            % Bring this scene to focus
             figure(obj.my_figure);
-            % key = waitforbuttonpress;
-            % set(obj.my_figure,'WindowKeyPressFcn',@RetrieveKeyboardData);
-            % set(obj.my_figure, 'CurrentKey', 'h')
-            % key = get(obj.my_figure, 'CurrentKey');
-            key = get(obj.my_figure, 'WindowKeyPressFcn',@press)
 
-            % set(obj.my_figure, 'CurrentKey', 0);
-            % keydown = 0;
-            % while ~keydown
-            % if ischar(currentKey)
-            %     key = currentKey;
-            % else
-            %     key = '';
-            % end
-            
+            % Pause the program until the user hits a key on the keyboard,
+            % then return the key pressed. The loop is required so that
+            % we don't exit on a mouse click instead.
+            keydown = 0;
+            while ~keydown
+                keydown = waitforbuttonpress;
+            end
+            key = get(obj.my_figure,'CurrentKey');
         end
-
-        
 
 
         function [row,col,button] = getMouseInput(obj)
@@ -244,7 +218,7 @@ classdef simpleGameEngine < handle
             %  2. The column of the tile clicked by the user
             %  3. (Optional) the button of the mouse used to click (1,2, or 3 for left, middle, and right, respectively)
             %
-            % Notes: A set of crosshairs appear in the scenes figure,
+            % Notes: A set of “crosshairs” appear in the scene’s figure,
             % and the program will pause until the user clicks on the
             % figure. It is possible to click outside the area of the
             % scene, in which case, the closest row and/or column is
@@ -286,15 +260,4 @@ classdef simpleGameEngine < handle
 end
 
 
-    function press(varargin)
-            switch varargin{2}.Key
-                case 'uparrow'
-                    fprintf('ok1')
-                case 'downarrow'
-fprintf('ok1')
-                case 'leftarrow'
-fprintf('ok1')
-                case 'rightarrow'
-fprintf('ok1')
-            end
-    end
+

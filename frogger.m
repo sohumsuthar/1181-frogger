@@ -98,5 +98,5 @@ blankL(frogPos(1), frogPos(2)) = 2;
 while true
     movementSpriteControl();
     refreshScene();
-    pause(1);
+    pause(0.2);
 end

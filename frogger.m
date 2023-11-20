@@ -98,7 +98,7 @@ blankL(frogPos(1), frogPos(2)) = 2;
 while true
     movementSpriteControl();
     refreshScene();
-    pause(0.2);
+    pause(1);
 end
 
 % G = uicontrol('style','text',...

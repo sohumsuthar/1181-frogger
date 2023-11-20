@@ -44,5 +44,4 @@ switch (k)
         refreshScene();
         end 
 end
-pause(.5)
 end

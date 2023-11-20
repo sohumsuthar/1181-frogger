@@ -26,7 +26,7 @@ set(f, 'Position', [10, 10, 10, 10]);
 
 
 frogPos = [11, 6];      % Initial position of the frog
-points = 0;             % Initialize points
+points = 4;             % Initialize points
 lives = 5;
 
 bushPos = 1:2:11;
@@ -101,11 +101,4 @@ while true
     pause(1);
 end
 
-% G = uicontrol('style','text',...
-%               'units','norm',...
-%               'pos',[0 0 1 1],...
-%               'string','GAME OVER',...
-%               'min',0,'max',10);
-% uicontrol(G)
 
-% text(4, 6, 'GAME OVER', 'FontSize', 16)

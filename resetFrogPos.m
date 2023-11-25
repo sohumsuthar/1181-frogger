@@ -15,8 +15,11 @@ global defaultBlank;
 frogPos = [11, 6]; % Reset frog position
 blankL(frogPos(1), frogPos(2)) = 2; % Update frog position
 if loss
-    lives = lives - 1;
-else
+    if lives ~= 0
+ 
+        lives = lives - 1;
+    end
+    else
     points = points + 1;
 end
 blankL = defaultBlank;

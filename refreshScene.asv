@@ -8,13 +8,22 @@ global blankL
 global f;
 global lives;
 
-drawScene(scn, bottomL, topL, blankL);
-if points < 5
-    xlabel(sprintf('points: %d, lives %d', points, lives)); % Display points in the plot
-else points == 5
-
-    text(200, 200, 'GAME OVER', 'FontSize', 32, 'Color', 'w')
+if lives == 0
+    % text(200, 200, 'GAME OVER', 'FontSize', 32, 'Color', 'w')
+    blankL(6, :) = [1, 25, 26, 27, 28, 1, 29, 30, 28, 31, 1];
+    % xlabel(sprintf('points: %d, lives %d', points, lives)); % Display points in the plot
+    % topL(7, :) = [1, 35, 36, 37, 38, 1, 39, 40, 39, 41, 1];
+    % bottomL(7, :) = [1, 35, 36, 37, 38, 1, 39, 40, 39, 41, 1];
 end
+if points < 10
+    blankL(12,:) = [33, numPref(points), 1, 1, 1, 1, 1, 1, 1, 32, numPref(lives)];
+
+elseif points >= 10
+    blankL(12,:) = [32, numPref(lives), 1, 1, 1, 1, 1, 1, 1, 33, numPref(points)];
+
+end
+drawScene(scn, bottomL, topL, blankL);
+
 title('Frogger') % Set the game title
 figure(f);
 end

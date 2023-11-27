@@ -1,6 +1,6 @@
-clc                     % Clear the command window
-clear                   % Clear workspace variables
-close all               % Close all open figures
+clc                     
+clear                   
+close all               
 
 % Set up initial variables and game environment
 

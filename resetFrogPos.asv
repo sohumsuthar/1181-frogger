@@ -16,7 +16,7 @@ global defaultBlank;
 frogPos = [11, 6];
 
 % Update frog position, number of lives, and/or amount of points
-% Refresh scene at the end of each iteration
+% Refresh scene at the end of each interation
 blankL(frogPos(1), frogPos(2)) = 2;
 if loss
     if lives ~= 0

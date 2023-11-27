@@ -8,6 +8,7 @@ global blankL
 global f;
 global bushPos;
 
+% Set arrow keys to movement of fro
 k = event.Key;
 switch (k)
     case 'uparrow' 

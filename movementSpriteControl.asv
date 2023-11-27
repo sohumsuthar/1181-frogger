@@ -14,7 +14,7 @@ global defaultBlank;
 
 % Circularily shift the positions of the sprites unless it has reached one
 % side of the sceen and if so, restart its position at the other end of the screen
-% Refresh scene and/ or frog position after each iteration
+% Refresh scene after each rep
 for i = movementRows
     if mod(i, 2) == 1
 

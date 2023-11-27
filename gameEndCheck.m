@@ -15,6 +15,8 @@ global bushPos;
 global difficulty;
 global speed;
 
+%Idk what to comment for this one
+
 if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 || frogPos(2) == 10) && frogPos(1) == 1)
     oldPos = frogPos(2);
     % points = points +1

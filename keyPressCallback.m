@@ -8,11 +8,12 @@ global blankL
 global f;
 global bushPos;
 
+% Set up, down, right and left arrow keys to the corresponding movement of the frog
+% Refresh scene and/or frog position after each iteration
 k = event.Key;
 switch (k)
     case 'uparrow' 
         if (frogPos(1) ~= 1) && ~((ismember(frogPos(2), bushPos) && frogPos(1) == 2))
-        % Move the frog up
         blankL(frogPos(1), frogPos(2)) = 1;
         frogPos(1) = frogPos(1) - 1;
         blankL(frogPos(1), frogPos(2)) = 2;
@@ -21,7 +22,6 @@ switch (k)
         end
     case 'downarrow'
         if (frogPos(1) ~= 11)
-        % Move the frog down
         blankL(frogPos(1), frogPos(2)) = 1;
         frogPos(1) = frogPos(1) + 1;
         blankL(frogPos(1), frogPos(2)) = 2;
@@ -29,7 +29,7 @@ switch (k)
         end
     case 'rightarrow'
         if (frogPos(2) ~= 11)
-        % Move the frog right
+
         blankL(frogPos(1), frogPos(2)) = 1;
         frogPos(2) = frogPos(2) + 1;
         blankL(frogPos(1), frogPos(2)) = 2;
@@ -37,7 +37,6 @@ switch (k)
         end
     case 'leftarrow' 
         if (frogPos(2) ~= 1)
-        % Move the frog left
         blankL(frogPos(1), frogPos(2)) = 1;
         frogPos(2) = frogPos(2) - 1;
         blankL(frogPos(1), frogPos(2)) = 2;

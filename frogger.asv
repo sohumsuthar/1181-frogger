@@ -2,7 +2,7 @@ clc
 clear                   
 close all               
 
-% Set up initial global variables for the game environment and script
+% Set up initial variables and game environment
 global scn;
 global topL;
 global frogPos;
@@ -26,8 +26,7 @@ scn = simpleGameEngine('frogger.png', 16, 16, 5, bgColor);
 f = figure('KeyPressFcn', @(handle, event) keyPressCallback(event));
 set(f, 'Position', [10, 10, 10, 10]);
 
-% Set the initial position of the frog, starting amount of points to zero,
-% initial speed to 1, and difficuty to zero
+% Set the initial position of the frog and starting amount of points
 frogPos = [11, 6];
 points = 0;             
 lives = 5;

@@ -8,8 +8,7 @@ global blankL
 global f;
 global lives;
 
-% If the frog's lives become zero, refresh scene with GAME OVER sprites on
-% the blank layer
+% If the frog's lives become zero, refresh scene with GAME OVER layer
 
 if lives == 0
     % text(200, 200, 'GAME OVER', 'FontSize', 32, 'Color', 'w')
@@ -27,6 +26,7 @@ end
     blankL(12,:) = [33, numPref(tensDigit), numPref(onesDigit), 1, 1, 1, 1, 1, 1, 32, numPref(lives)];
 % 
 % end
+
 
 drawScene(scn, bottomL, topL, blankL);
 

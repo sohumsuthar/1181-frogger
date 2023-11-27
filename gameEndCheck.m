@@ -17,7 +17,6 @@ global speed;
 
 if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 || frogPos(2) == 10) && frogPos(1) == 1)
     oldPos = frogPos(2);
-    frogPos = [11, 6];
     % points = points +1
     topL(1, oldPos) = 14; % Place a marker on the log
     resetFrogPos(false);
@@ -41,7 +40,7 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
             7, 1, 1, 6, 1, 34, 35, 1, 7, 1, 1; ...
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;...
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
     end
     refreshScene();
 end

@@ -15,18 +15,20 @@ if lives == 0
     % topL(7, :) = [1, 35, 36, 37, 38, 1, 39, 40, 39, 41, 1];
     % bottomL(7, :) = [1, 35, 36, 37, 38, 1, 39, 40, 39, 41, 1];
 end
-if points < 10
-    blankL(12,:) = [33, 41, numPref(points), 1, 1, 1, 1, 1, 1, 32, numPref(lives)];
-
-elseif points >= 10
+% if points < 10
+%     blankL(12,:) = [33, 41, numPref(points), 1, 1, 1, 1, 1, 1, 32, numPref(lives)];
+% 
+% elseif points >= 10
     onesDigit = mod(points, 10);
     tensDigit = floor(mod(points, 100) / 10);
-    blankL(12,:) = [32, numPref(tensDigit), numPref(onesDigit), 1, 1, 1, 1, 1, 1, 33, numPref(lives)];
+    blankL(12,:) = [33, numPref(tensDigit), numPref(onesDigit), 1, 1, 1, 1, 1, 1, 32, numPref(lives)];
+% 
+% end
 
-end
+
 drawScene(scn, bottomL, topL, blankL);
 
-title('Frogger') % Set the game title
+% title('Frogger') % Set the game title
 figure(f);
 end
 

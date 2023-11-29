@@ -39,13 +39,6 @@ bushPos = 1:2:11;
 
 enemies = [15, 16, 17, 7, 5, 6];
 
-% alligatorSymbols = [15, 16, 17; 11, 15, 16; 11, 11, 15; 17, 11, 11; 16, 17, 11]; % Symbols for alligators
-% alligators = [2, 4; 3, 6; 4, 3; 5, 7]; % Initial positions of alligators
-% logs = [2, 4; 3, 6; 4, 3; 5, 7]; % Initial positions of logs
-% logMoveCounter = 0;     % Counter for log movement
-% logMoveFrequency = 1;   % Frequency of log movement
-% alligatorMoveCounter = 0;   % Counter for alligator movement
-% alligatorMoveFrequency = 1; % Frequency of alligator movement
 
 movementRows = [2:5, 7:9];
 shiftAmount = 1;

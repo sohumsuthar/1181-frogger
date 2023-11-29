@@ -5,18 +5,14 @@ if strcomp(value, 's')
 elseif strcomp(value, 's')
     letter = 52;
 elseif strcomp(value, 's')
-    letter = 53;
+    letter = 25;
 elseif strcomp(value, 's')
-    letter = 51;
+    letter = 26;
 elseif strcomp(value, 's')
-    letter = 51;
+    letter = 27;
 elseif strcomp(value, 's')
-    letter = 51;
-elseif strcomp(value, 's')
-    letter = 51;
-elseif strcomp(value, 's')
-    letter = 51;
+    letter = 28;
 else strcomp(value, 's')
-    letter = 51;
-end
+    letter = 31;
+
 end

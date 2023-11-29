@@ -1,22 +1,22 @@
 function letter = letterIndex(value)
 % Insert start menu letters
-if strcomp(value, 's')
+if strcmp(value, 's')
     letter = 51;
-elseif strcomp(value, 't')
+elseif strcmp(value, 't')
     letter = 52;
-elseif strcomp(value, 'g')
+elseif strcmp(value, 'g')
     letter = 25;
-elseif strcomp(value, 'a')
+elseif strcmp(value, 'a')
     letter = 26;
-elseif strcomp(value, 'm')
+elseif strcmp(value, 'm')
     letter = 27;
-elseif strcomp(value, 'e')
+elseif strcmp(value, 'e')
     letter = 28;
-elseif strcomp(value, 'o')
+elseif strcmp(value, 'o')
     letter = 29;
-elseif strcomp(value, 'v')
+elseif strcmp(value, 'v')
     letter = 30;
-elseif strcomp(value, 'r')
+elseif strcmp(value, 'r')
     letter = 31;
 end
 end

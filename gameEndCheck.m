@@ -29,6 +29,7 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
         end
     end
     if frog == 5
+        level = level + 1;
         topL(1, :) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         speed = speed - 0.1;
         topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...

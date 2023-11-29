@@ -18,6 +18,7 @@ global defaultBlank;
 global bushPos;
 global difficulty;
 global speed;
+global level;
 
 % Set background color for the game and create the game engine
 bgColor = [0, 0, 0];
@@ -32,8 +33,10 @@ frogPos = [11, 6];
 points = 0;             
 lives = 5;
 
+
 speed = 1;
 difficulty = 0;
+level = 1
 
 bushPos = 1:2:11;
 

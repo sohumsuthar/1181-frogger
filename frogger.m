@@ -1,6 +1,6 @@
-clc                     
-clear                   
-close all           
+clc
+clear
+close all
 
 % Set up initial global variables for the game environment and script
 global scn;
@@ -19,6 +19,7 @@ global bushPos;
 global difficulty;
 global speed;
 global level;
+global multiplier;
 
 % Set background color for the game and create the game engine
 bgColor = [0, 0, 0];
@@ -30,17 +31,21 @@ set(f, 'Position', [10, 10, 10, 10]);
 % Set the initial position of the frog, starting amount of points to zero,
 % initial speed to 1, and difficuty to zero
 frogPos = [11, 6];
-points = 0;             
+points = 0;
 lives = 5;
 
 
-speed = 1;
 difficulty = 0;
-level = 1
+level = 1;
+multiplier = 0.9;
+speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier;
+
+
 
 bushPos = 1:2:11;
 
 enemies = [15, 16, 17, 7, 5, 6];
+% enemies = 0;
 
 
 movementRows = [2:5, 7:9];
@@ -125,7 +130,7 @@ blankL(frogPos(1), frogPos(2)) = 2;
 while true
     movementSpriteControl();
     refreshScene();
-    pause(1);
+    pause(speed);
 end
 
 

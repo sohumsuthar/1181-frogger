@@ -15,6 +15,7 @@ global bushPos;
 global difficulty;
 global speed;
 global level;
+global multiplier;
 
 % Check whether the frogger is in both the first row and one of the
 % positions in the bushes
@@ -32,7 +33,7 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
     if frog == 5
         level = level + 1;
         topL(1, :) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        speed = -0.2 * log((level+1)/3) + 0.8;
+        speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier;
         topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
             22, 23, 24, 1, 22, 24, 1, 1, 15, 16, 17; ...
             1, 22, 23, 23, 24, 1, 1, 22, 23, 24, 1; ...

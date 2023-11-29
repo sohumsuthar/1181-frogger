@@ -14,7 +14,7 @@ global defaultBlank;
 global bushPos;
 global difficulty;
 global speed;
-global level;
+global level
 
 % Check whether the frogger is in both the first row and one of the
 % positions in the bushes

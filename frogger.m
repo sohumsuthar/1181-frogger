@@ -37,14 +37,14 @@ lives = 5;
 
 difficulty = 0;
 level = 1;
-multiplier = 0.9;
+multiplier = 0.7;
 speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier;
 
 
 
 bushPos = 1:2:11;
 
-enemies = [15, 16, 17, 7, 5, 6];
+enemies = [15, 16, 17, 7, 5, 6, 34, 35, 53, 54];
 % enemies = 0;
 
 
@@ -129,8 +129,9 @@ blankL(frogPos(1), frogPos(2)) = 2;
 % Add pause to scene refresh
 while true
     movementSpriteControl();
+    pause(speed/2)
     refreshScene();
-    pause(speed);
+    pause(speed/2);
 end
 
 

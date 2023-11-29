@@ -16,7 +16,7 @@ global defaultBlank;
 % side of the sceen and if so, restart its position at the other end of the screen
 % Refresh scene and/ or frog position after each iteration
 for i = movementRows
-    if mod(i, 2) == 1
+    if mod(i, 2) == 1 || i == 6
 
         if frogPos(1) == i && (~ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) ~= 1)
 

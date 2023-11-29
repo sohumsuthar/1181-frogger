@@ -20,9 +20,9 @@ if lives == 0
 end
 
 onesDigitP = onesDigit(points);
-tensDigitP = tensDigit(points)
+tensDigitP = tensDigit(points);
 onesDigitL = onesDigit(level);
-tensDigitL = tensDigit(level)
+tensDigitL = tensDigit(level);
 blankL(12,:) = [33, numPref(tensDigitP), numPref(onesDigitP), 1, 55, numPref(tensDigitL), numPref(onesDigitL), 1,1, 32, numPref(lives)];
 
 

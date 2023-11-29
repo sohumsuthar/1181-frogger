@@ -1,6 +1,6 @@
 clc                     
 clear                   
-close all               
+close all           
 
 % Set up initial global variables for the game environment and script
 global scn;

@@ -1,4 +1,5 @@
-% Input number from sprite sheet for score and number of lives
+% Input number from sprite sheet for score and number of lives by using its
+% position on the spread sheet
 
 function result = numPref(value)
     if value == 0

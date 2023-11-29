@@ -15,12 +15,12 @@ global bushPos;
 global difficulty;
 global speed;
 
-%Idk what to comment for this one
+% Check whether the frogger is in both the first row and one of the
+% positions in the bushes
 
 if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 || frogPos(2) == 10) && frogPos(1) == 1)
     oldPos = frogPos(2);
-    % points = points +1
-    topL(1, oldPos) = 14; % Place a marker on the log
+    topL(1, oldPos) = 14; % Place a marker in the bush on the log
     resetFrogPos(false);
     frog = 0;
     for i= 2:2:10

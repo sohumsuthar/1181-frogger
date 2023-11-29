@@ -43,6 +43,8 @@ enemies = [15, 16, 17, 7, 5, 6];
 movementRows = [2:5, 7:9];
 shiftAmount = 1;
 
+% Insert start menu
+
 % Set the initial layout of the bottom, top, blank, and defult blank layers
 bottomL = [18, 19, 18, 19, 18, 19, 18, 19, 18, 19, 18; ...
     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, ; ...

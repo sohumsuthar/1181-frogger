@@ -1,4 +1,4 @@
-% Idk what to comment here
+% Input number from sprite sheet for score and number of lives
 
 function result = numPref(value)
     if value == 0

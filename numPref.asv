@@ -1,7 +1,11 @@
+% Input number from sprite sheet for score and number of lives by using its
+% position on the spread sheet
+
 function result = numPref(value)
     if value == 0
-        result = 41
-    elseif val
+        result = 41;
+    elseif value == 9
+        result = 50;
     else
         result = str2double(['4', num2str(value +1)]);
     end

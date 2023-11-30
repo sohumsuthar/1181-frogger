@@ -45,7 +45,7 @@ speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier;
 bushPos = 1:2:11;
 
 enemies = [17, 7, 5, 6, 34, 35, 53, 56];
-% enemies = 0;
+
 
 
 movementRows = [2:5, 7:9];

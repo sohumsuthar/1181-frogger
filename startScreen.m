@@ -5,6 +5,8 @@ global Y;
 global Z;
 global blankL;
 global frogPos;
+
+% Draw start menu scene
 drawScene(scn, X, Y, Z);
 getMouseInput(scn);
 % Scene labels and titles

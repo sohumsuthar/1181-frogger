@@ -1,16 +1,11 @@
 function movementSpriteControl()
-global points;
 global frogPos;
 global topL;
-global scn;
 global bottomL;
 global blankL
-global f;
-global lives;
 global movementRows;
 global shiftAmount;
 global enemies;
-global defaultBlank;
 
 % Circularily shift the positions of the sprites unless it has reached one
 % side of the sceen and if so, restart its position at the other end of the screen

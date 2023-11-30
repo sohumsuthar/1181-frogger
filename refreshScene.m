@@ -1,6 +1,5 @@
 function refreshScene()
 global points;
-global frogPos;
 global topL;
 global scn;
 global bottomL;

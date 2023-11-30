@@ -1,11 +1,7 @@
 function keyPressCallback(event)
-global points;
 global frogPos;
 global topL;
-global scn;
-global bottomL;
 global blankL
-global f;
 global bushPos;
 global lives;
 global enemies;

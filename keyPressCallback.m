@@ -21,10 +21,7 @@ switch (k)
             blankL(frogPos(1), frogPos(2)) = 1;
             frogPos(1) = frogPos(1) - 1;
             blankL(frogPos(1), frogPos(2)) = 2;
-            if (ismember(topL(frogPos(1), frogPos(2)), enemies)) || ((frogPos(1) >= 2 && frogPos(1) <= 5) && topL(frogPos(1), frogPos(2)) == 1);
-
-                resetFrogPos(true);
-            end
+xCheck();
             gameEndCheck();
             refreshScene();
         end
@@ -33,10 +30,7 @@ switch (k)
             blankL(frogPos(1), frogPos(2)) = 1;
             frogPos(1) = frogPos(1) + 1;
             blankL(frogPos(1), frogPos(2)) = 2;
-            if (ismember(topL(frogPos(1), frogPos(2)), enemies)) || ((frogPos(1) >= 2 && frogPos(1) <= 5) && topL(frogPos(1), frogPos(2)) == 1);
-
-                resetFrogPos(true);
-            end
+xCheck();
             refreshScene();
         end
     case 'rightarrow'
@@ -45,10 +39,7 @@ switch (k)
             blankL(frogPos(1), frogPos(2)) = 1;
             frogPos(2) = frogPos(2) + 1;
             blankL(frogPos(1), frogPos(2)) = 2;
-            if (ismember(topL(frogPos(1), frogPos(2)), enemies)) || ((frogPos(1) >= 2 && frogPos(1) <= 5) && topL(frogPos(1), frogPos(2)) == 1);
-
-                resetFrogPos(true);
-            end
+xCheck();
             refreshScene();
         end
     case 'leftarrow'
@@ -56,13 +47,32 @@ switch (k)
             blankL(frogPos(1), frogPos(2)) = 1;
             frogPos(2) = frogPos(2) - 1;
             blankL(frogPos(1), frogPos(2)) = 2;
-            if (ismember(topL(frogPos(1), frogPos(2)), enemies)) || ((frogPos(1) >= 2 && frogPos(1) <= 5) && topL(frogPos(1), frogPos(2)) == 1);
-
-                resetFrogPos(true);
-            end
+xCheck();
             refreshScene();
         end
     case 'l'
         lives = lives + 1;
 end
 end
+
+% global scn;
+% global bgColor
+% global topL;
+% global frogPos;
+% global bottomL;
+% global blankL;
+% global X;
+% global Y;
+% global Z;
+% global points;
+% global f;
+% global lives;
+% global movementRows;
+% global shiftAmount;
+% global enemies;
+% global defaultBlank;
+% global bushPos;
+% global difficulty;
+% global speed;
+% global level;
+% global multiplier;

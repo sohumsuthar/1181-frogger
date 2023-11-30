@@ -15,6 +15,8 @@ global level;
 
 if lives == 0
     blankL(6, :) = [1, 25, 26, 27, 28, 1, 29, 30, 28, 31, 1];
+    topL(6, 6) = 1;
+    bottomL(6, 6) = 1;
     speed = 0.1;
 
 end

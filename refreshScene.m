@@ -8,15 +8,19 @@ global f;
 global lives;
 global speed;
 global level;
+global gameOver;
 
 % If the frog's lives become zero, refresh scene with GAME OVER sprites on
 % the blank layer
 
 if lives == 0
     blankL(6, :) = [1, 25, 26, 27, 28, 1, 29, 30, 28, 31, 1];
+    blankL(9, :) = [1, 1, 1, letterIndex('s'), letterIndex('t'), letterIndex('a'),...
+    letterIndex('r'), letterIndex('t'), 1, 1, 1];
     topL(6, 6) = 1;
     bottomL(6, 6) = 1;
     speed = 0.1;
+    gameOver = true;
 
 end
 

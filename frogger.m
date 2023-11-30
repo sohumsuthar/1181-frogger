@@ -7,7 +7,7 @@ global speed;
 initVars();
 startScreen();
 
-% Add pause to scene refresh
+% Add a pause to refresh scene and sprite movement
 while true
     movementSpriteControl();
     refreshScene();

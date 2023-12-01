@@ -51,11 +51,3 @@ switch (k)
         lives = lives + 1;
 end
 end
-
-
-% global defaultBlank;
-% global bushPos;
-% global difficulty;
-% global speed;
-% global level;
-% global multiplier;

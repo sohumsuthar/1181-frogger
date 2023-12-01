@@ -42,7 +42,7 @@ homes = zeros(1, 5);
 
 difficulty = 0;
 level = 1;
-multiplier = 0.7;
+multiplier = 0.6;
 speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier;
 
 
@@ -130,6 +130,6 @@ fprintf(['Hello!, this is Frogger. The objective is to fill in all the homes acr
     'Good luck and have fun! \n \n'])
 [y, Fs] = audioread('kensample.mp3');
 volume = 0.3;
-player = audioplayer(volume * y, Fs);
+player = audioplayer(volume .* y, Fs);
 
 end

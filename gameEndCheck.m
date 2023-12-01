@@ -19,7 +19,7 @@ global homes;
 if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 || frogPos(2) == 10) && frogPos(1) == 1) && homes(frogPos(2)/2) ~= 1
     oldPos = frogPos(2);
     homes(oldPos/2) = 1;
-    sound(y*2.5, Fs);
+    sound(y*2.3, Fs);
     topL(1, oldPos) = 14; % Place a marker in the bush on the log
     resetFrogPos(false);
     frog = 0;

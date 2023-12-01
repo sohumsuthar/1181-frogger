@@ -1,10 +1,8 @@
 function keyPressCallback(event)
 global frogPos;
-global topL;
 global blankL
 global bushPos;
 global lives;
-global enemies;
 
 % Set up, down, right and left arrow keys to the corresponding movement of the frog
 % Refresh scene and/or frog position after each iteration
@@ -49,21 +47,7 @@ switch (k)
 end
 end
 
-% global scn;
-% global bgColor
-% global topL;
-% global frogPos;
-% global bottomL;
-% global blankL;
-% global X;
-% global Y;
-% global Z;
-% global points;
-% global f;
-% global lives;
-% global movementRows;
-% global shiftAmount;
-% global enemies;
+
 % global defaultBlank;
 % global bushPos;
 % global difficulty;

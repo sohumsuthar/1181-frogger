@@ -129,7 +129,7 @@ fprintf(['Hello!, this is Frogger. The objective is to fill in all the homes acr
     'granting you a life for filling the homes.\n' ...
     'Good luck and have fun! \n \n'])
 [y, Fs] = audioread('kensample.mp3');
-volume = 0.4;
+volume = 0.3;
 player = audioplayer(volume * y, Fs);
 
 end

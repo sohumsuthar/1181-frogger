@@ -19,9 +19,9 @@ switch (k)
             blankL(frogPos(1), frogPos(2)) = 1;
             frogPos(1) = frogPos(1) - 1;
             blankL(frogPos(1), frogPos(2)) = 2;
-            xCheck(); % Check to see if frog is touching an enemy and if so resets the frog's position
-            gameEndCheck(); % Checks to see if you've advanced a level or lost a life
-            refreshScene(); % Updates scores, lives, level, and draws all leyers
+            xCheck(); % Check to see if frog is touching an enemy
+            gameEndCheck(); % Checks to see if the frog is touching an enemy is true and if so, resets the frog's position, dec
+            refreshScene();
         end
     case {'downarrow', 's'}
         if (frogPos(1) ~= 11)

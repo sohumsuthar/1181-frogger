@@ -19,13 +19,13 @@ startScreen(); % display the start screen
 while true
     tic; % start the timer for the trophy
     play(player); % play the background music
-    while ~gameOver % in the current game session
-        movementSpriteControl(); % move the sprites that need to be moved
-        refreshScene(); % refresh the scene and publish the scene to the fgr
-        pause(speed); % wait
+    while ~gameOver % in the 
+        movementSpriteControl();
+        refreshScene();
+        pause(speed);
     end
 
-    Timer = toc; % set timer
-    restartGame(); % reset vars for new game
+    Timer = toc;
+    restartGame();
 end
 

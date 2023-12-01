@@ -1,2 +1,2 @@
-Score: 0
- Time: 3.47
+Score: 1
+ Time: 12.77

@@ -13,15 +13,11 @@ initVars();
 startScreen();
 
 
-
 % Add a pause to refresh scene and sprite movement
 while true
 tic;
 play(player);
 while ~gameOver
-    if ~isplaying(player)
-        play(player);
-    end
     movementSpriteControl();
     refreshScene();
     pause(speed);

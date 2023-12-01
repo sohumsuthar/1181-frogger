@@ -7,13 +7,11 @@ clear player
 global speed;
 global gameOver;
 global Timer;
+global player;
 
 initVars();
 startScreen();
 
-[y, Fs] = audioread('kensample.mp3');
-volume = 0.4;
-player = audioplayer(volume * y, Fs);
 
 
 % Add a pause to refresh scene and sprite movement

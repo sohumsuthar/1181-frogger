@@ -22,6 +22,7 @@ global level;
 global multiplier;
 global gameOver;
 global homes;
+global player;
 
 
 % Set background color for the game and create the game engine
@@ -127,4 +128,8 @@ fprintf(['Hello!, this is Frogger. The objective is to fill in all the homes acr
     'Once you fill all the spots, the game will progressivley get harder and faster,\n' ...
     'granting you a life for filling the homes.\n' ...
     'Good luck and have fun! \n \n'])
+[y, Fs] = audioread('kensample.mp3');
+volume = 0.4;
+player = audioplayer(volume * y, Fs);
+
 end

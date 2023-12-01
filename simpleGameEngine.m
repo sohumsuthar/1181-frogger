@@ -194,6 +194,7 @@ classdef simpleGameEngine < handle
             else
                 % otherwise just update the image data
                 obj.my_image.CData = big_scene_data;
+                figure(obj.my_figure);
             end
         end
 

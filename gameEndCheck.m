@@ -1,7 +1,10 @@
 % function to check whether the game ended or not, also changing the level
 % when needed
+
 function gameEndCheck()
-% call global variables as needed
+
+% see function 'initVars' for all variable informations
+% global variable initializations
 global frogPos;
 global topL;
 global lives;
@@ -42,8 +45,9 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
         lives = lives + 1; % inc lives
         speed = (-0.2 * log((level+1)/3) + 0.8) * multiplier; % changes speed of the game
 
-        topL(1, :) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        if level == 2 
+        topL(1, :) = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; % reset all the homes
+        if level == 2 % change layer for level 2 difficulty
+            
             topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 22, 23, 24, 1, 22, 24, 1, 1, 15, 16, 17; ...
                 1, 22, 23, 23, 24, 1, 1, 22, 23, 24, 1; ...
@@ -56,8 +60,9 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-        elseif level == 3
-            movementRows(end + 1) = 6;
+        elseif level == 3 % change layer for level 3 difficulty
+
+            movementRows(end + 1) = 6; % add a row to shift for the snake
             topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 1, 22, 24, 1, 22, 24, 1, 1, 15, 16, 17; ...
                 1, 22, 23, 24, 1, 1, 1, 22, 23, 24, 1; ...
@@ -71,7 +76,8 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-        elseif level == 4
+        elseif level == 4 % change layer for level 4 difficulty
+
             topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 1, 22, 24, 1, 22, 24, 1, 1, 15, 16, 17; ...
                 1, 22, 23, 24, 1, 1, 1, 22, 23, 24, 1; ...
@@ -84,7 +90,9 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-       elseif level == 5
+
+       elseif level == 5 % change layer for level 5 difficulty
+
             topL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1; ...
                 1, 22, 24, 1, 22, 24, 1, 1, 15, 16, 17; ...
                 1, 22, 23, 24, 1, 1, 1, 22, 23, 24, 1; ...
@@ -97,8 +105,11 @@ if ((frogPos(2) == 2 || frogPos(2) == 4 || frogPos(2) == 6 || frogPos(2) == 8 ||
                 1, 1, 1, 1, 53, 54, 1, 1, 1, 1, 1; ...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;...
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
         end
     end
 end
-refreshScene();
+
+refreshScene(); % reset the game board
+
 end

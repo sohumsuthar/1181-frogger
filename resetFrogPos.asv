@@ -1,4 +1,9 @@
-function resetFrogPos(loss)
+% function tp reset the frog position and handle losses
+
+function resetFrogPos(loss) % boolean 
+
+% see function 'initVars' for all variable informations
+% global variable initializations
 global points;
 global frogPos;
 global topL;
@@ -16,7 +21,7 @@ global defaultBlank;
 frogPos = [11, 6];
 
 % Update frog position, number of lives, and/or amount of points
-% Refresh scene at the end of each interation
+% Refresh scene at the end of each iteration
 blankL(frogPos(1), frogPos(2)) = 2;
 if loss
     if lives ~= 0

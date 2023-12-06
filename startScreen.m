@@ -2,7 +2,9 @@
 % character sprites, and the mouse input to allow the user to press START
 function startScreen()
 
-% see function 'initVars' for all variable information
+% see function 'initVars' for all variable informations
+% global variable initializations
+
 global scn;
 global X;
 global Y;

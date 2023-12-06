@@ -1,5 +1,4 @@
-% Function that updates the players lives and points when refreshing the
-% scene or refreshes the scene to GAME OVER layer if the lives are zero
+% Function that 
 function refreshScene()
 
 % see function 'initVars' for all variable information

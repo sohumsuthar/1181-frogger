@@ -14,9 +14,9 @@ global enemies;
 % side of the sceen and if so, restart its position at the other end of the screen
 % Refresh scene and/ or frog position after each iteration
 for i = movementRows
-    if mod(i, 2) == 1 || i == 6 
+    if mod(i, 2) == 1 || i == 6 % 
 
-        if frogPos(1) == i && (~ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) ~= 1) 
+        if frogPos(1) == i && (~ismember(topL(i, frogPos(2)), enemies) && topL(i, frogPos(2)) ~= 1) % If the frog's postition is equal to the 
 
             frogPos(2) = frogPos(2) - shiftAmount;
             if frogPos(2) == 0

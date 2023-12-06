@@ -67,7 +67,6 @@ for i = movementRows % for each row that moves
 
 end
 
-xCheck(); % check for frog death
-
-refreshScene(); % refresh the scene
+xCheck(); % check for frog 
+refreshScene();
 end

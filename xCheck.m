@@ -1,7 +1,8 @@
 % function to check whether the frog dies or not
 function xCheck()
 
-% bring global variables to workspace
+% see function 'initVars' for all variable informations
+% global variable initializations
 global topL;
 global frogPos;
 global enemies;

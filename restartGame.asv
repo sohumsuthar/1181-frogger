@@ -1,0 +1,32 @@
+% a function to handle the game restarting after the game has ended
+
+function restartGame()
+
+% see function 'initVars' for all variable informations
+% global variable initializations
+
+global gameOver;
+global scn;
+global points
+global Timer;
+
+
+
+fileID = fopen('score_trophy.txt', 'w'); % access
+fprintf(fileID, 'Score: %d\n Time: %.2f\n', points, Timer);
+fclose(fileID);
+
+fprintf('Score saved to score_trophy.txt');
+
+pause(1);
+
+getMouseInput(scn);
+close all;
+
+gameOver = false;
+initVars();
+resetFrogPos(false);
+points = 0;
+
+end
+

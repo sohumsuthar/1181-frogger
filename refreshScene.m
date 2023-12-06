@@ -11,7 +11,7 @@ global level;
 global gameOver;
 global player;
 
-% If the frog's lives become zero, refresh scene with GAME OVER sprites on
+% If the frog's lives become zero, refresh scene with GAME OVER and START sprites on
 % the blank layer
 if ~isplaying(player)
     play(player);
@@ -34,7 +34,7 @@ onesDigitL = onesDigit(level);
 tensDigitL = tensDigit(level);
 blankL(12,:) = [33, numPref(tensDigit(points)), numPref(onesDigit(points)), 1, 55, numPref(tensDigit(level)), numPref(onesDigit(level)), 1, 32, numPref(tensDigit(lives)), numPref(onesDigit(lives))];
 
-% Draw scene with new blank layer that shows GAME OVER
+% Draw scene with new blank layer
 drawScene(scn, bottomL, topL, blankL);
 
 figure(f);

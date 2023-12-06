@@ -1,5 +1,5 @@
-% Draws scene with the start menu components such as the game title,
-% character sprites, and the mouse input to allow the user to press START
+% Draws scene with the start menu components such as the game title and
+% mouse input to allow the user to press START 
 function startScreen()
 
 % see function 'initVars' for all variable information
@@ -10,12 +10,10 @@ global Z;
 global blankL;
 global frogPos;
 
-% Draw start menu scene and initialize mouse input
+% Draw start menu scene
 drawScene(scn, X, Y, Z);
 getMouseInput(scn);
-
-% refresh scene with new blank layer
+% Scene labels and titles
 refreshScene();
 blankL(frogPos(1), frogPos(2)) = 2;
-
 end

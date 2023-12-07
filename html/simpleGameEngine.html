@@ -1,0 +1,647 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>simpleGameEngine</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2023-12-06">
+<meta name="DC.source" content="simpleGameEngine.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<pre class="codeinput">
+<span class="comment">% The Simple Game Engine is a class from object-oriented programming.</span>
+<span class="comment">% If you are unfamiliar with object oriented programming, here is a quick</span>
+<span class="comment">% crash course:</span>
+<span class="comment">%</span>
+<span class="comment">% Classes are a higher level of organizing programs beyond functions, they</span>
+<span class="comment">% group together the functions (called methods) and variables (properties)</span>
+<span class="comment">% of whatever it is you are trying to do. When you make a variable (called</span>
+<span class="comment">% an object) from a class, it has all the properties from that class</span>
+<span class="comment">% bundled together. This mimics how we naturally categorize things in real</span>
+<span class="comment">% life. For example, cats are a class of animals, methods are the things a</span>
+<span class="comment">% cat can do (e.g. pounce, meow, etc), properties describe a cat (e.g.</span>
+<span class="comment">% color, age, location, etc), and objects  are individual cats (where each</span>
+<span class="comment">% of the properties has a set value).</span>
+<span class="comment">%</span>
+<span class="comment">% The one extra bit of syntax you need to understand what's going on below</span>
+<span class="comment">% is how to access properties of an object:</span>
+<span class="comment">% Property "prop" of object "obj" is "obj.prop"</span>
+
+<span class="comment">% The simpleGameEngine class inherets from the handle class because we</span>
+<span class="comment">% want the game objects to be updated by their methods, specifically</span>
+<span class="comment">% my_figure and my_image</span>
+<span class="keyword">classdef</span> simpleGameEngine &lt; handle
+    <span class="keyword">properties</span>
+        sprites = {}; <span class="comment">% color data of the sprites</span>
+        sprites_transparency = {}; <span class="comment">% transparency data of the sprites</span>
+        sprite_width = 0;
+        sprite_height = 0;
+        background_color = [0, 0, 0];
+        zoom = 1;
+        my_figure; <span class="comment">% figure identifier</span>
+        my_image;  <span class="comment">% image data</span>
+    <span class="keyword">end</span>
+
+    <span class="keyword">methods</span>
+        <span class="keyword">function</span> obj = simpleGameEngine(sprites_fname, sprite_height, sprite_width, zoom, background_color)
+            <span class="comment">% simpleGameEngine</span>
+            <span class="comment">% Input:</span>
+            <span class="comment">%  1. File name of sprite sheet as a character array</span>
+            <span class="comment">%  2. Height of the sprites in pixels</span>
+            <span class="comment">%  3. Width of the sprites in pixels</span>
+            <span class="comment">%  4. (Optional) Zoom factor to multiply image by in final figure (Default: 1)</span>
+            <span class="comment">%  5. (Optional) Background color in RGB format as a 3 element vector (Default: [0,0,0] i.e. black)</span>
+            <span class="comment">% Output: an SGE scene variable</span>
+            <span class="comment">% Note: In RGB format, colors are specified as a mixture of red, green, and blue on a scale of 0 to 255. [0,0,0] is black, [255,255,255] is white, [255,0,0] is red, etc.</span>
+            <span class="comment">% Example:</span>
+            <span class="comment">%     	my_scene = simpleGameEngine('tictactoe.png',16,16,5,[0,150,0]);</span>
+
+            <span class="comment">% load the input data into the object</span>
+            obj.sprite_width = sprite_width;
+            obj.sprite_height = sprite_height;
+            <span class="keyword">if</span> nargin &gt; 4
+                obj.background_color = background_color;
+            <span class="keyword">end</span>
+            <span class="keyword">if</span> nargin &gt; 3
+                obj.zoom = zoom;
+            <span class="keyword">end</span>
+
+            <span class="comment">% read the sprites image data and transparency</span>
+            [sprites_image, ~, transparency] = imread(sprites_fname);
+
+            <span class="comment">% determine how many sprites there are based on the sprite size</span>
+            <span class="comment">% and image size</span>
+            sprites_size = size(sprites_image);
+            sprite_row_max = (sprites_size(1)+1)/(sprite_height+1);
+            sprite_col_max = (sprites_size(2)+1)/(sprite_width+1);
+
+            <span class="comment">% Make a transparency layer if there is none (this happens when</span>
+            <span class="comment">% there are no transparent pixels in the file).</span>
+            <span class="keyword">if</span> isempty(transparency)
+                transparency = 255*ones(sprites_size,<span class="string">'uint8'</span>);
+            <span class="keyword">else</span>
+                <span class="comment">% If there is a transparency layer, use repmat() to</span>
+                <span class="comment">% replicate is to all three color channels</span>
+                transparency = repmat(transparency,1,1,3);
+            <span class="keyword">end</span>
+
+            <span class="comment">% loop over the image and load the individual sprite data into</span>
+            <span class="comment">% the object</span>
+            <span class="keyword">for</span> r=1:sprite_row_max
+                <span class="keyword">for</span> c=1:sprite_col_max
+                    r_min = sprite_height*(r-1)+r;
+                    r_max = sprite_height*r+r-1;
+                    c_min = sprite_width*(c-1)+c;
+                    c_max = sprite_width*c+c-1;
+                    obj.sprites{end+1} = sprites_image(r_min:r_max,c_min:c_max,:);
+                    obj.sprites_transparency{end+1} = transparency(r_min:r_max,c_min:c_max,:);
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> drawScene(obj, background_sprites, foreground_sprites, additional_layer)
+            <span class="comment">% draw_scene</span>
+            <span class="comment">% Input:</span>
+            <span class="comment">%  1. an SGE scene, which gains focus</span>
+            <span class="comment">%  2. A matrix of sprite IDs, the arrangement of the sprites in the figure will be the same as in this matrix</span>
+            <span class="comment">%  3. (Optional) A second matrix of sprite IDs of the same size as the first. These sprites will be layered on top of the first set.</span>
+            <span class="comment">%  4. (Optional) A third matrix of sprite IDs of the same size as the first. These sprites will be layered on top of the previous sets.</span>
+            <span class="comment">% Output: None</span>
+
+            scene_size = size(background_sprites);
+
+            <span class="comment">% Error checking: make sure the bg and fg are the same size</span>
+            <span class="keyword">if</span> nargin &gt; 2
+                <span class="keyword">if</span> ~isequal(scene_size, size(foreground_sprites))
+                    error(<span class="string">'Background and foreground matrices of scene must be the same size.'</span>)
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> nargin &gt; 3
+                <span class="keyword">if</span> ~isequal(scene_size, size(additional_layer))
+                    error(<span class="string">'Background and additional layer matrices of scene must be the same size.'</span>)
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
+            num_rows = scene_size(1);
+            num_cols = scene_size(2);
+
+            <span class="comment">% initialize the scene_data array to the correct size and type</span>
+            scene_data = zeros(obj.sprite_height * num_rows, obj.sprite_width * num_cols, 3, <span class="string">'uint8'</span>);
+
+            <span class="comment">% loop over the rows and columns of the tiles in the scene to</span>
+            <span class="comment">% draw the sprites in the correct locations</span>
+            <span class="keyword">for</span> tile_row = 1:num_rows
+                <span class="keyword">for</span> tile_col = 1:num_cols
+
+                    <span class="comment">% Save the id of the current sprite(s) to make things</span>
+                    <span class="comment">% easier to read later</span>
+                    bg_sprite_id = background_sprites(tile_row, tile_col);
+                    <span class="keyword">if</span> nargin &gt; 2
+                        fg_sprite_id = foreground_sprites(tile_row, tile_col);
+                    <span class="keyword">end</span>
+                    <span class="keyword">if</span> nargin &gt; 3
+                        additional_sprite_id = additional_layer(tile_row, tile_col);
+                    <span class="keyword">end</span>
+
+                    <span class="comment">% Build the tile layer by layer, starting with the</span>
+                    <span class="comment">% background color</span>
+                    tile_data = zeros(obj.sprite_height, obj.sprite_width, 3, <span class="string">'uint8'</span>);
+                    <span class="keyword">for</span> rgb_idx = 1:3
+                        tile_data(:, :, rgb_idx) = obj.background_color(rgb_idx);
+                    <span class="keyword">end</span>
+
+                    <span class="comment">% Layer on the first sprite. Note that the transparency</span>
+                    <span class="comment">% data also ranges from 0 (transparent) to 255</span>
+                    <span class="comment">% (visible)</span>
+                    tile_data = obj.sprites{bg_sprite_id} .* (obj.sprites_transparency{bg_sprite_id}/255) + <span class="keyword">...</span>
+                        tile_data .* ((255 - obj.sprites_transparency{bg_sprite_id})/255);
+
+                    <span class="comment">% If needed, layer on the second sprite</span>
+                    <span class="keyword">if</span> nargin &gt; 2
+                        tile_data = obj.sprites{fg_sprite_id} .* (obj.sprites_transparency{fg_sprite_id}/255) + <span class="keyword">...</span>
+                            tile_data .* ((255 - obj.sprites_transparency{fg_sprite_id})/255);
+                    <span class="keyword">end</span>
+
+                    <span class="keyword">if</span> nargin &gt; 3
+                        tile_data = obj.sprites{additional_sprite_id} .* (obj.sprites_transparency{additional_sprite_id}/255) + <span class="keyword">...</span>
+                            tile_data .* ((255 - obj.sprites_transparency{additional_sprite_id})/255);
+                    <span class="keyword">end</span>
+
+                    <span class="comment">% Calculate the pixel location of the top-left corner</span>
+                    <span class="comment">% of the tile</span>
+                    rmin = obj.sprite_height * (tile_row - 1);
+                    cmin = obj.sprite_width * (tile_col - 1);
+
+                    <span class="comment">% Write the tile to the scene_data array</span>
+                    scene_data(rmin + 1:rmin + obj.sprite_height, cmin + 1:cmin + obj.sprite_width, :) = tile_data;
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+
+            <span class="comment">% handle zooming</span>
+            big_scene_data = imresize(scene_data, obj.zoom, <span class="string">'nearest'</span>);
+
+            <span class="comment">% This part is a bit tricky, but avoids some latency, the idea</span>
+            <span class="comment">% is that we only want to completely create a new figure if we</span>
+            <span class="comment">% absolutely have to: the first time the figure is created,</span>
+            <span class="comment">% when the old figure has been closed, or if the scene is</span>
+            <span class="comment">% resized. Otherwise, we just update the image data in the</span>
+            <span class="comment">% current image, which is much faster.</span>
+            <span class="keyword">if</span> isempty(obj.my_figure) || ~isvalid(obj.my_figure)
+                <span class="comment">% initialize figure</span>
+                obj.my_figure = figure();
+
+                <span class="comment">% set guidata to the key press and release functions,</span>
+                <span class="comment">% this allows keeping track of what key has been pressed</span>
+                obj.my_figure.KeyPressFcn = @(src, event)guidata(src, event.Key);
+                obj.my_figure.KeyReleaseFcn = @(src, event)guidata(src, 0);
+
+                <span class="comment">% actually display the image to the figure</span>
+                obj.my_image = imshow(big_scene_data, <span class="string">'InitialMagnification'</span>, 100);
+
+            <span class="keyword">elseif</span> isempty(obj.my_image)  || ~isprop(obj.my_image, <span class="string">'CData'</span>) || ~isequal(size(big_scene_data), size(obj.my_image.CData))
+                <span class="comment">% Re-display the image if its size changed</span>
+                figure(obj.my_figure);
+                obj.my_image = imshow(big_scene_data, <span class="string">'InitialMagnification'</span>, 100);
+            <span class="keyword">else</span>
+                <span class="comment">% otherwise just update the image data</span>
+                obj.my_image.CData = big_scene_data;
+                <span class="comment">% figure(obj.my_figure);</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+
+
+        <span class="keyword">function</span> key = getKeyboardInput(obj)
+            <span class="comment">% getKeyboardInput</span>
+            <span class="comment">% Input: an SGE scene, which gains focus</span>
+            <span class="comment">% Output: next key pressed while scene has focus</span>
+            <span class="comment">% Note: the operation of the program pauses while it waits for input</span>
+            <span class="comment">% Example:</span>
+            <span class="comment">%     	k = getKeyboardInput(my_scene);</span>
+
+
+            <span class="comment">% Bring this scene to focus</span>
+            figure(obj.my_figure);
+
+            <span class="comment">% Pause the program until the user hits a key on the keyboard,</span>
+            <span class="comment">% then return the key pressed. The loop is required so that</span>
+            <span class="comment">% we don't exit on a mouse click instead.</span>
+            keydown = 0;
+            <span class="keyword">while</span> ~keydown
+                keydown = waitforbuttonpress;
+            <span class="keyword">end</span>
+            key = get(obj.my_figure,<span class="string">'CurrentKey'</span>);
+        <span class="keyword">end</span>
+
+
+        <span class="keyword">function</span> [row,col,button] = getMouseInput(obj)
+            <span class="comment">% getMouseInput</span>
+            <span class="comment">% Input: an SGE scene, which gains focus</span>
+            <span class="comment">% Output:</span>
+            <span class="comment">%  1. The row of the tile clicked by the user</span>
+            <span class="comment">%  2. The column of the tile clicked by the user</span>
+            <span class="comment">%  3. (Optional) the button of the mouse used to click (1,2, or 3 for left, middle, and right, respectively)</span>
+            <span class="comment">%</span>
+            <span class="comment">% Notes: A set of &ldquo;crosshairs&rdquo; appear in the scene&rsquo;s figure,</span>
+            <span class="comment">% and the program will pause until the user clicks on the</span>
+            <span class="comment">% figure. It is possible to click outside the area of the</span>
+            <span class="comment">% scene, in which case, the closest row and/or column is</span>
+            <span class="comment">% returned.</span>
+            <span class="comment">%</span>
+            <span class="comment">% Example:</span>
+            <span class="comment">%     	[row,col,button] = getMouseInput (my_scene);</span>
+
+            <span class="comment">% Bring this scene to focus</span>
+            figure(obj.my_figure);
+
+            <span class="comment">% Get the user mouse input</span>
+            [X,Y,button] = ginput(1);
+
+            <span class="comment">% Convert this into the tile row/column</span>
+            row = ceil(Y/obj.sprite_height/obj.zoom);
+            col = ceil(X/obj.sprite_width/obj.zoom);
+
+            <span class="comment">% Calculate the maximum possible row and column from the</span>
+            <span class="comment">% dimensions of the current scene</span>
+            sceneSize = size(obj.my_image.CData);
+            max_row = sceneSize(1)/obj.sprite_height/obj.zoom;
+            max_col = sceneSize(2)/obj.sprite_width/obj.zoom;
+
+            <span class="comment">% If the user clicked outside the scene, return instead the</span>
+            <span class="comment">% closest row and/or column</span>
+            <span class="keyword">if</span> row &lt; 1
+                row = 1;
+            <span class="keyword">elseif</span> row &gt; max_row
+                row = max_row;
+            <span class="keyword">end</span>
+            <span class="keyword">if</span> col &lt; 1
+                col = 1;
+            <span class="keyword">elseif</span> col &gt; max_col
+                col = max_col;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput error">Not enough input arguments.
+
+Error in simpleGameEngine (line 49)
+            obj.sprite_width = sprite_width;
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+% The Simple Game Engine is a class from object-oriented programming.
+% If you are unfamiliar with object oriented programming, here is a quick
+% crash course:
+%
+% Classes are a higher level of organizing programs beyond functions, they
+% group together the functions (called methods) and variables (properties)
+% of whatever it is you are trying to do. When you make a variable (called
+% an object) from a class, it has all the properties from that class
+% bundled together. This mimics how we naturally categorize things in real
+% life. For example, cats are a class of animals, methods are the things a
+% cat can do (e.g. pounce, meow, etc), properties describe a cat (e.g.
+% color, age, location, etc), and objects  are individual cats (where each
+% of the properties has a set value).
+%
+% The one extra bit of syntax you need to understand what's going on below
+% is how to access properties of an object:
+% Property "prop" of object "obj" is "obj.prop"
+
+% The simpleGameEngine class inherets from the handle class because we
+% want the game objects to be updated by their methods, specifically
+% my_figure and my_image
+classdef simpleGameEngine < handle
+    properties
+        sprites = {}; % color data of the sprites
+        sprites_transparency = {}; % transparency data of the sprites
+        sprite_width = 0;
+        sprite_height = 0;
+        background_color = [0, 0, 0];
+        zoom = 1;
+        my_figure; % figure identifier
+        my_image;  % image data
+    end
+
+    methods
+        function obj = simpleGameEngine(sprites_fname, sprite_height, sprite_width, zoom, background_color)
+            % simpleGameEngine
+            % Input:
+            %  1. File name of sprite sheet as a character array
+            %  2. Height of the sprites in pixels
+            %  3. Width of the sprites in pixels
+            %  4. (Optional) Zoom factor to multiply image by in final figure (Default: 1)
+            %  5. (Optional) Background color in RGB format as a 3 element vector (Default: [0,0,0] i.e. black)
+            % Output: an SGE scene variable
+            % Note: In RGB format, colors are specified as a mixture of red, green, and blue on a scale of 0 to 255. [0,0,0] is black, [255,255,255] is white, [255,0,0] is red, etc.
+            % Example:
+            %     	my_scene = simpleGameEngine('tictactoe.png',16,16,5,[0,150,0]);
+
+            % load the input data into the object
+            obj.sprite_width = sprite_width;
+            obj.sprite_height = sprite_height;
+            if nargin > 4
+                obj.background_color = background_color;
+            end
+            if nargin > 3
+                obj.zoom = zoom;
+            end
+
+            % read the sprites image data and transparency
+            [sprites_image, ~, transparency] = imread(sprites_fname);
+
+            % determine how many sprites there are based on the sprite size
+            % and image size
+            sprites_size = size(sprites_image);
+            sprite_row_max = (sprites_size(1)+1)/(sprite_height+1);
+            sprite_col_max = (sprites_size(2)+1)/(sprite_width+1);
+
+            % Make a transparency layer if there is none (this happens when
+            % there are no transparent pixels in the file).
+            if isempty(transparency)
+                transparency = 255*ones(sprites_size,'uint8');
+            else
+                % If there is a transparency layer, use repmat() to
+                % replicate is to all three color channels
+                transparency = repmat(transparency,1,1,3);
+            end
+
+            % loop over the image and load the individual sprite data into
+            % the object
+            for r=1:sprite_row_max
+                for c=1:sprite_col_max
+                    r_min = sprite_height*(r-1)+r;
+                    r_max = sprite_height*r+r-1;
+                    c_min = sprite_width*(c-1)+c;
+                    c_max = sprite_width*c+c-1;
+                    obj.sprites{end+1} = sprites_image(r_min:r_max,c_min:c_max,:);
+                    obj.sprites_transparency{end+1} = transparency(r_min:r_max,c_min:c_max,:);
+                end
+            end
+        end
+        function drawScene(obj, background_sprites, foreground_sprites, additional_layer)
+            % draw_scene
+            % Input:
+            %  1. an SGE scene, which gains focus
+            %  2. A matrix of sprite IDs, the arrangement of the sprites in the figure will be the same as in this matrix
+            %  3. (Optional) A second matrix of sprite IDs of the same size as the first. These sprites will be layered on top of the first set.
+            %  4. (Optional) A third matrix of sprite IDs of the same size as the first. These sprites will be layered on top of the previous sets.
+            % Output: None
+
+            scene_size = size(background_sprites);
+
+            % Error checking: make sure the bg and fg are the same size
+            if nargin > 2
+                if ~isequal(scene_size, size(foreground_sprites))
+                    error('Background and foreground matrices of scene must be the same size.')
+                end
+            end
+
+            if nargin > 3
+                if ~isequal(scene_size, size(additional_layer))
+                    error('Background and additional layer matrices of scene must be the same size.')
+                end
+            end
+
+            num_rows = scene_size(1);
+            num_cols = scene_size(2);
+
+            % initialize the scene_data array to the correct size and type
+            scene_data = zeros(obj.sprite_height * num_rows, obj.sprite_width * num_cols, 3, 'uint8');
+
+            % loop over the rows and columns of the tiles in the scene to
+            % draw the sprites in the correct locations
+            for tile_row = 1:num_rows
+                for tile_col = 1:num_cols
+
+                    % Save the id of the current sprite(s) to make things
+                    % easier to read later
+                    bg_sprite_id = background_sprites(tile_row, tile_col);
+                    if nargin > 2
+                        fg_sprite_id = foreground_sprites(tile_row, tile_col);
+                    end
+                    if nargin > 3
+                        additional_sprite_id = additional_layer(tile_row, tile_col);
+                    end
+
+                    % Build the tile layer by layer, starting with the
+                    % background color
+                    tile_data = zeros(obj.sprite_height, obj.sprite_width, 3, 'uint8');
+                    for rgb_idx = 1:3
+                        tile_data(:, :, rgb_idx) = obj.background_color(rgb_idx);
+                    end
+
+                    % Layer on the first sprite. Note that the transparency
+                    % data also ranges from 0 (transparent) to 255
+                    % (visible)
+                    tile_data = obj.sprites{bg_sprite_id} .* (obj.sprites_transparency{bg_sprite_id}/255) + ...
+                        tile_data .* ((255 - obj.sprites_transparency{bg_sprite_id})/255);
+
+                    % If needed, layer on the second sprite
+                    if nargin > 2
+                        tile_data = obj.sprites{fg_sprite_id} .* (obj.sprites_transparency{fg_sprite_id}/255) + ...
+                            tile_data .* ((255 - obj.sprites_transparency{fg_sprite_id})/255);
+                    end
+
+                    if nargin > 3
+                        tile_data = obj.sprites{additional_sprite_id} .* (obj.sprites_transparency{additional_sprite_id}/255) + ...
+                            tile_data .* ((255 - obj.sprites_transparency{additional_sprite_id})/255);
+                    end
+
+                    % Calculate the pixel location of the top-left corner
+                    % of the tile
+                    rmin = obj.sprite_height * (tile_row - 1);
+                    cmin = obj.sprite_width * (tile_col - 1);
+
+                    % Write the tile to the scene_data array
+                    scene_data(rmin + 1:rmin + obj.sprite_height, cmin + 1:cmin + obj.sprite_width, :) = tile_data;
+                end
+            end
+
+            % handle zooming
+            big_scene_data = imresize(scene_data, obj.zoom, 'nearest');
+
+            % This part is a bit tricky, but avoids some latency, the idea
+            % is that we only want to completely create a new figure if we
+            % absolutely have to: the first time the figure is created,
+            % when the old figure has been closed, or if the scene is
+            % resized. Otherwise, we just update the image data in the
+            % current image, which is much faster.
+            if isempty(obj.my_figure) || ~isvalid(obj.my_figure)
+                % initialize figure
+                obj.my_figure = figure();
+
+                % set guidata to the key press and release functions,
+                % this allows keeping track of what key has been pressed
+                obj.my_figure.KeyPressFcn = @(src, event)guidata(src, event.Key);
+                obj.my_figure.KeyReleaseFcn = @(src, event)guidata(src, 0);
+
+                % actually display the image to the figure
+                obj.my_image = imshow(big_scene_data, 'InitialMagnification', 100);
+
+            elseif isempty(obj.my_image)  || ~isprop(obj.my_image, 'CData') || ~isequal(size(big_scene_data), size(obj.my_image.CData))
+                % Re-display the image if its size changed
+                figure(obj.my_figure);
+                obj.my_image = imshow(big_scene_data, 'InitialMagnification', 100);
+            else
+                % otherwise just update the image data
+                obj.my_image.CData = big_scene_data;
+                % figure(obj.my_figure);
+            end
+        end
+
+
+
+        function key = getKeyboardInput(obj)
+            % getKeyboardInput
+            % Input: an SGE scene, which gains focus
+            % Output: next key pressed while scene has focus
+            % Note: the operation of the program pauses while it waits for input
+            % Example:
+            %     	k = getKeyboardInput(my_scene);
+
+
+            % Bring this scene to focus
+            figure(obj.my_figure);
+
+            % Pause the program until the user hits a key on the keyboard,
+            % then return the key pressed. The loop is required so that
+            % we don't exit on a mouse click instead.
+            keydown = 0;
+            while ~keydown
+                keydown = waitforbuttonpress;
+            end
+            key = get(obj.my_figure,'CurrentKey');
+        end
+
+
+        function [row,col,button] = getMouseInput(obj)
+            % getMouseInput
+            % Input: an SGE scene, which gains focus
+            % Output:
+            %  1. The row of the tile clicked by the user
+            %  2. The column of the tile clicked by the user
+            %  3. (Optional) the button of the mouse used to click (1,2, or 3 for left, middle, and right, respectively)
+            %
+            % Notes: A set of “crosshairs” appear in the scene’s figure,
+            % and the program will pause until the user clicks on the
+            % figure. It is possible to click outside the area of the
+            % scene, in which case, the closest row and/or column is
+            % returned.
+            %
+            % Example:
+            %     	[row,col,button] = getMouseInput (my_scene);
+
+            % Bring this scene to focus
+            figure(obj.my_figure);
+
+            % Get the user mouse input
+            [X,Y,button] = ginput(1);
+
+            % Convert this into the tile row/column
+            row = ceil(Y/obj.sprite_height/obj.zoom);
+            col = ceil(X/obj.sprite_width/obj.zoom);
+
+            % Calculate the maximum possible row and column from the
+            % dimensions of the current scene
+            sceneSize = size(obj.my_image.CData);
+            max_row = sceneSize(1)/obj.sprite_height/obj.zoom;
+            max_col = sceneSize(2)/obj.sprite_width/obj.zoom;
+
+            % If the user clicked outside the scene, return instead the
+            % closest row and/or column
+            if row < 1
+                row = 1;
+            elseif row > max_row
+                row = max_row;
+            end
+            if col < 1
+                col = 1;
+            elseif col > max_col
+                col = max_col;
+            end
+        end
+    end
+end
+
+
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>
